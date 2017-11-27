@@ -12,14 +12,6 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
-      
-      <div id="counter">
-        <div id="counter-count">0</div>
-        <button id="counter-up">+</button><button id="counter-down">-</button>
-      </div>
-      
-      <%= react_component("counter", count: 10) %>
-      
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
@@ -27,6 +19,5 @@
       <%= render 'layouts/footer' %>
       <%= debug(params) if Rails.env.development? %>
     </div>
-    <%= react_component("hello_react", name: 'React') %>
   </body>
 </html>
