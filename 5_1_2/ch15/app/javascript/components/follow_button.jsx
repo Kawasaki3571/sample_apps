@@ -11,11 +11,40 @@ export default class FollowButton extends Component {
   }
   
   follow = () => {
-    console.log('follow', this.props.user)
+    $.ajax({
+      url: `/relationships`,
+      dataType: 'json',
+      contentType: 'application/json',
+      type: 'POST',
+      data: JSON.stringify({
+        followed_id: this.props.user.id
+      }),
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      cache: false
+    }).then((response) => {
+      this.setState({
+        relationship: response
+      })
+    })
   }
   
   unfollow = () => {
-    console.log('unfollow', this.props.relationship)
+    $.ajax({
+      url: `/relationships/${this.state.relationship.id}`,
+      dataType: 'json',
+      contentType: 'application/json',
+      type: 'DELETE',
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      cache: false
+    }).then((response) => {
+      this.setState({
+        relationship: null
+      })
+    })
   }
   
   handleClickFollowButton = () => {
