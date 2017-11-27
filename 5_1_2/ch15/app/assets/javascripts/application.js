@@ -15,3 +15,15 @@
 //= require bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  var $count = $('#counter-count')
+  $('#counter-up').on('click', function() {
+    var count = parseInt($count.text(), 10)
+    $count.text(count + 1)
+  })
+  $('#counter-down').on('click', function() {
+    var count = parseInt($count.text(), 10)
+    $count.text(count - 1)
+  })
+})

@@ -12,6 +12,12 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container">
+      
+      <div id="counter">
+        <div id="counter-count">0</div>
+        <button id="counter-up">+</button><button id="counter-down">-</button>
+      </div>
+      
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
