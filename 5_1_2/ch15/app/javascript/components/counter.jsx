@@ -8,13 +8,25 @@ export default class Counter extends Component {
       count: 0
     }
   }
+  
+  handleUp = () => {
+    this.setState({
+      count: ++this.state.count
+    })
+  }
+  
+  handleDown = () => {
+    this.setState({
+      count: --this.state.count
+    })
+  }
 
   render() {
     return (
       <div>
         <div>{ this.state.count }</div>
-        <button>+</button>
-        <button>-</button>
+        <button onClick={ this.handleUp }>+</button>
+        <button onClick={ this.handleDown }>-</button>
       </div>
     )
   }
