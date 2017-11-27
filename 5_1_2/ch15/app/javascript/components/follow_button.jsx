@@ -6,11 +6,16 @@ export default class FollowButton extends Component {
     super(props)
     
     this.state = {
+      loading: false,
       relationship: props.relationship
     }
   }
   
   follow = () => {
+    this.setState({
+      loading: true
+    })
+    
     $.ajax({
       url: `/relationships`,
       dataType: 'json',
@@ -25,12 +30,17 @@ export default class FollowButton extends Component {
       cache: false
     }).then((response) => {
       this.setState({
+        loading: false,
         relationship: response
       })
     })
   }
   
   unfollow = () => {
+    this.setState({
+      loading: true
+    })
+
     $.ajax({
       url: `/relationships/${this.state.relationship.id}`,
       dataType: 'json',
@@ -42,6 +52,7 @@ export default class FollowButton extends Component {
       cache: false
     }).then((response) => {
       this.setState({
+        loading: false,
         relationship: null
       })
     })
@@ -67,7 +78,7 @@ export default class FollowButton extends Component {
     
     return (
       <div>
-        <button className={ className } onClick={ this.handleClickFollowButton }>
+        <button className={ className } onClick={ this.handleClickFollowButton } disabled={ this.state.loading }>
           { this.state.relationship !== null ? 'Unfollow' : 'Follow' }
         </button>
       </div>
