@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
+import classnames from 'classnames'
 
 export default class FollowButton extends Component {
   constructor(props) {
@@ -59,9 +60,17 @@ export default class FollowButton extends Component {
 
   render() {
     const isFollowing = this.state.relationship !== null
+    const className = classnames('btn', {
+      'btn-danger': isFollowing,
+      'btn-primary': !isFollowing
+    })
 
     return (
-      <button onClick={ isFollowing ? this.unfollow : this.follow } disabled={ this.state.loading }>
+      <button 
+        className={ className} 
+        onClick={ isFollowing ? this.unfollow : this.follow } 
+        disabled={ this.state.loading }
+      >
         { isFollowing ? 'Unfollow' : 'Follow' }
       </button>
     )
