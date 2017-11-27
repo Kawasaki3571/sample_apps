@@ -18,6 +18,8 @@
         <button id="counter-up">+</button><button id="counter-down">-</button>
       </div>
       
+      <%= react_component("counter") %>
+      
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
