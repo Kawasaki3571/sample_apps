@@ -10,10 +10,20 @@ export default class FollowButton extends Component {
     }
   }
   
+  follow = () => {
+    
+  }
+  
+  unfollow = () => {
+    
+  }
+
   render() {
+    const isFollowing = this.state.relationship !== null
+
     return (
-      <button>
-        { this.state.relationship !== null ? 'Unfollow' : 'Follow' }
+      <button onClick={ isFollowing ? this.unfollow : this.follow }>
+        { isFollowing ? 'Unfollow' : 'Follow' }
       </button>
     )
   }
