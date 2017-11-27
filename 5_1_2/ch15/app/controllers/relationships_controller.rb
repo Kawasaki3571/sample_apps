@@ -4,10 +4,11 @@ class RelationshipsController < ApplicationController
   # POST /relationships
   def create
     @user = User.find(params[:followed_id])
-    current_user.follow(@user) # DB 更新
+    @relationship = current_user.follow(@user) # DB 更新
     respond_to do |format|
       format.html { redirect_to @user }
       format.js # => app/views/relationships/create.js.erb
+      format.json { render json: @relationship }
     end
   end
   
