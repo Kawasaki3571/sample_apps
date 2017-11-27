@@ -2,10 +2,18 @@ import React, { Component } from "react"
 import PropTypes from "prop-types"
 
 export default class FollowButton extends Component {
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      relationship: props.relationship
+    }
+  }
+  
   render() {
     return (
       <button>
-        { this.props.relationship !== null ? 'Unfollow' : 'Follow' }
+        { this.state.relationship !== null ? 'Unfollow' : 'Follow' }
       </button>
     )
   }
