@@ -19,6 +19,7 @@ class RelationshipsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @user }
       format.js # => app/views/relationships/destroy.js.erb
+      format.json { render json: nil }
     end
   end
 end

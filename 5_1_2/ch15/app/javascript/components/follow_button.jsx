@@ -31,7 +31,19 @@ export default class FollowButton extends Component {
   }
 
   unfollow = () => {
-    
+    $.ajax({
+      type: 'DELETE',
+      url: `/relationships/${this.state.relationship.id}`,
+      dataType: 'json',
+      contentType: 'application/json',
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      }
+    }).then((response) => {
+      this.setState({
+        relationship: null
+      })
+    })
   }
 
   render() {
